@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="layout :: site-head">
+<title>Spring MVC Blog</title>
+</head>
+
+<body>
+	<header th:replace="layout :: site-header"></header>
+	<aside>
+		<h2>Recent Posts</h2>
+		<a href="#" th:each="p : ${latest5Post}" th:text="${p.title}" th:href="@{/posts/view/{id}/(id=${p.id})}">
+		Work Begines on HTML5.1
+		</a>
+	</aside>
+	<main>
+	 <article th:each="p : ${latest3Post}">
+		<h2 class="title" th:text="${p.title}">Post Title</h2>
+		<div class="date">
+			<i>Posted on</i> <span
+				th:text="${#dates.format(p.date,'dd-MMM-yyyy')}">22-May-2017</span>
+			<span th:if="${p.author}" th:remove="tag"> <i>by</i> <span
+				th:text="${p.author.fullname != null ? p.author.fullname : p.author.username}">Svetlin Nakov</span>
+			</span>
+		</div>
+		<p class="content" th:utext="${p.body}">Post content</p>
+	</article>
+	</main>
+	<footer th:replace="layout :: site-footer"></footer>
+</body>
+        
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
